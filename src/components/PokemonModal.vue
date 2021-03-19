@@ -1,29 +1,36 @@
 <template>
-  <!-- This example requires Tailwind CSS v2.0+ -->
   <div v-if="pokemon">
-    <div class="flex pb-5 justify-end items-center">
-      <!-- Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" -->
-      <button
-        type="button"
-        class="bg-gray-200 relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-        aria-pressed="true"
-        aria-labelledby="annual-billing-label"
-      >
-        <span class="sr-only">Use setting</span>
-        <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-        <span
-          aria-hidden="true"
-          class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-        ></span>
-      </button>
-      <span class="ml-3" id="annual-billing-label">
-        <span class="text-sm font-medium text-gray-900">Annual billing </span>
-        <span class="text-sm text-gray-500">(Save 10%)</span>
-      </span>
+    <div class="flex pb-5 justify-between items-center">
+      <h1 class="text-md capitalize font-medium text-gray-500">
+        {{ pokemon.name }}
+      </h1>
+      <div class="flex items-center">
+        <span class="mr-3" id="annual-billing-label">
+          <span class="text-sm font-medium text-gray-500">Toggle shiny</span>
+        </span>
+        <button
+          type="button"
+          class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none"
+          :class="shinyToggle ? 'bg-red-400' : 'bg-gray-200'"
+          :aria-pressed="shinyToggle"
+          aria-labelledby="annual-billing-label"
+          @click="shinyToggle = !shinyToggle"
+        >
+          <span class="sr-only">Use setting</span>
+          <span
+            aria-hidden="true"
+            class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+            :class="shinyToggle ? 'translate-x-5' : 'translate-x-0'"
+          ></span>
+        </button>
+      </div>
     </div>
 
     <div class="flex mb-5">
-      <div class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg">
+      <div
+        class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
+        v-if="!shinyToggle"
+      >
         <img
           class="inline-block h-32 w-32 border-0"
           :src="pokemon.sprites.front_default"
@@ -32,6 +39,21 @@
         <img
           class="inline-block h-32 w-32"
           :src="pokemon.sprites.back_default"
+          alt=""
+        />
+      </div>
+      <div
+        class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
+        v-else
+      >
+        <img
+          class="inline-block h-32 w-32 border-0"
+          :src="pokemon.sprites.front_shiny"
+          alt=""
+        />
+        <img
+          class="inline-block h-32 w-32"
+          :src="pokemon.sprites.back_shiny"
           alt=""
         />
       </div>
@@ -134,7 +156,7 @@
 </template>
 
 <script>
-import { computed, watch } from "vue";
+import { computed, ref, watch } from "vue";
 export default {
   name: "PokemonModal",
   props: {
@@ -144,13 +166,16 @@ export default {
   },
   setup(props) {
     const pokemon = computed(() => props.pokemonDetails);
+    const shinyToggle = ref(false);
 
     watch(pokemon, () => {
       console.log(pokemon.value);
+      shinyToggle.value = false;
     });
 
     return {
       pokemon,
+      shinyToggle,
     };
   },
 };
