@@ -10,13 +10,13 @@
           <div class="lg:py-24">
             <a
               href="#"
-              class="inline-flex items-center text-gray-600 bg-gray-100 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-gray-200"
+              class="inline-flex items-center text-gray-600 bg-gray-100 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-red-700"
             >
               <span
                 class="px-3 py-0.5 text-white bg-red-500 text-xs font-semibold leading-5 uppercase tracking-wide rounded-full"
-                >We're hiring</span
+                >the pokedex</span
               >
-              <span class="ml-4 text-sm">Visit our careers page</span>
+              <span class="ml-4 text-sm">Visit the Kanto page</span>
               <svg
                 class="ml-2 w-5 h-5 text-gray-500"
                 x-description="Heroicon name: solid/chevron-right"
@@ -60,7 +60,7 @@
                   <div class="mt-3 sm:mt-0 sm:ml-3">
                     <button
                       type="submit"
-                      class="block w-full py-3 px-4 rounded-md shadow bg-red-500 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-400 focus:ring-offset-gray-900"
+                      class="block w-full py-3 px-4 rounded-md shadow bg-red-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800 focus:ring-offset-red-900"
                     >
                       Find Pokemon
                     </button>
@@ -72,7 +72,7 @@
         </div>
         <div class="mt-12 -mb-16 sm:-mb-48 lg:m-0 lg:relative flex">
           <div
-            class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:ml-auto self-center"
+            class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:ml-auto lg:mr-0 self-center"
           >
             <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
             <img

@@ -4,21 +4,31 @@
       <div class="flex justify-between h-16">
         <div class="flex">
           <div class="flex-shrink-0 flex items-center">
-            <h2
+            <router-link
+              :to="{ name: 'Home' }"
               class="text-2xl font-bold leading-7 text-white sm:text-2xl sm:truncate font-mono"
             >
               Pokedex
-            </h2>
+            </router-link>
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+          <div class="hidden sm:ml-2 sm:flex sm:space-x-8">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
             <router-link
-              to="about"
-              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:border-gray-100 hover:border-b-2"
+              :to="{ name: 'Region', params: { name: 'kanto' } }"
+              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:text-gray-200"
             >
               Kanto
+            </router-link>
+          </div>
+          <div class="hidden sm:ml-2 sm:flex sm:space-x-8">
+            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
+            <router-link
+              :to="{ name: 'Region', params: { name: 'johto' } }"
+              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:text-gray-200"
+            >
+              Johto
             </router-link>
           </div>
         </div>

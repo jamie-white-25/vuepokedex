@@ -13,6 +13,6 @@ export default {
 
 <style>
 * {
-  outline: none;
+  outline: none !important;
 }
 </style>
