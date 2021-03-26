@@ -1,6 +1,8 @@
 <template>
   <div v-if="pokemon">
-    <div class="flex pb-5 justify-between items-center">
+    <div
+      class="flex pb-5 justify-between items-center transform transition-all"
+    >
       <h1 class="text-md capitalize font-medium text-gray-500">
         {{ pokemon.name }}
       </h1>
@@ -27,33 +29,23 @@
     </div>
 
     <div class="flex mb-5">
-      <div
-        class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
-        v-if="!shinyToggle"
-      >
+      <div class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg">
         <img
           class="inline-block h-32 w-32 border-0"
-          :src="pokemon.sprites.front_default"
+          :src="
+            shinyToggle
+              ? pokemon.sprites.front_shiny
+              : pokemon.sprites.front_default
+          "
           alt=""
         />
         <img
           class="inline-block h-32 w-32"
-          :src="pokemon.sprites.back_default"
-          alt=""
-        />
-      </div>
-      <div
-        class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
-        v-else
-      >
-        <img
-          class="inline-block h-32 w-32 border-0"
-          :src="pokemon.sprites.front_shiny"
-          alt=""
-        />
-        <img
-          class="inline-block h-32 w-32"
-          :src="pokemon.sprites.back_shiny"
+          :src="
+            shinyToggle
+              ? pokemon.sprites.back_shiny
+              : pokemon.sprites.back_default
+          "
           alt=""
         />
       </div>

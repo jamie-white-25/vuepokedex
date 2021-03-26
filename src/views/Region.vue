@@ -1,6 +1,39 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    hi poke fans from {{ region }}
+    <section class="bg-white">
+      <div
+        class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
+      >
+        <div class="text-center">
+          <!-- <h2
+            class="text-base font-semibold text-indigo-600 tracking-wide uppercase"
+          >
+            Pricing
+          </h2> -->
+          <p
+            class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
+          >
+            Welcome to the
+            <span class="bold capitalize text-red-500">{{ region }}</span>
+            pokedex.
+          </p>
+          <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">
+            Click on a <span class="text-red-500">Pokemon</span> to see more
+            details, or search for a pokemon in this region below.
+          </p>
+
+          <div class="p-10 max-w-lg mx-auto mt-5">
+            <div class="min-w-0 flex-1" data-v-fae5bece="">
+              <input
+                type="text"
+                placeholder="Search for a Pokemon"
+                class="block w-full px-4 py-3 border-b-2 text-base text-center text-gray-900 placeholder-gray-500 focus:outline-none border-red-400"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
     <h1 v-if="error">{{ error.status }}</h1>
     <PokemonList :list="pokedex" @open="openModal" />
   </div>

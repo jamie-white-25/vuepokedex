@@ -1,6 +1,6 @@
 <template>
   <ul
-    class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-24"
+    class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-16"
     :class="(pokedex.length > 0, timer) ? 'flex' : 'hidden'"
   >
     <li
@@ -17,11 +17,13 @@
           :alt="pokemon.name"
         />
         <div class="">
-          <h3 class="mt-2 text-gray-900 text-sm font-medium">
+          <h3 class="mt-6 text-gray-900 text-sm font-medium">
             {{ pokemon.name }}
           </h3>
-          <dl class="mt-1 flex-grow flex flex-col justify-between">
-            <dd class="text-gray-500 text-sm">{{ "#" + pokemon.number }}</dd>
+          <dl class="mt-2 flex-grow flex flex-col justify-between">
+            <dd class="text-gray-500 text-sm">
+              {{ "#" + pokemon.number }}
+            </dd>
           </dl>
         </div>
       </div>
@@ -29,7 +31,7 @@
   </ul>
 
   <ul
-    class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-24"
+    class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-16"
     :class="(pokedex.length < 0, timer === false) ? 'flex' : 'hidden'"
   >
     <li

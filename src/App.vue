@@ -1,6 +1,17 @@
 <template>
   <Navbar />
-  <router-view />
+  <router-view v-slot="{ Component }">
+    <transition
+      enter-from-class="opacity-0"
+      enter-to-class="opacity-100"
+      enter-active-class="ease-out duration-300"
+      leave-from-class="opacity-100"
+      leave-to-class="opacity-0"
+      leave-active-class="ease-in duration-300"
+    >
+      <component :is="Component" />
+    </transition>
+  </router-view>
 </template>
 
 <script>
