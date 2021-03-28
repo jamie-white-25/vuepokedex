@@ -45,12 +45,12 @@
       <div class="">
         <h3 class="mt-2 text-gray-900 text-sm font-medium"></h3>
         <div
-          class="h-4 mt-6 mx-auto bg-gradient-to-r from-red-500 to-pink-600  rounded w-1/4"
+          class="h-4 mt-8 mx-auto bg-gradient-to-r from-red-500 to-pink-600  rounded w-1/4"
         ></div>
         <div
           class="h-4 mt-3 mx-auto bg-gradient-to-r from-red-500 to-pink-600 rounded w-1/5"
         ></div>
-        <dl class="mt-1 flex-grow flex flex-col justify-between">
+        <dl class="mt-2 flex-grow flex flex-col justify-between">
           <dd class="text-gray-500 text-sm"></dd>
         </dl>
       </div>

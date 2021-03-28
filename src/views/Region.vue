@@ -35,11 +35,13 @@
       </div>
     </section>
     <h1 v-if="error">{{ error.status }}</h1>
+
     <PokemonList :list="pokedex" @open="openModal" />
+
+    <Modal :isOpen="toggleModal" @close="toggleModal = false">
+      <PokemonModal :pokemonDetails="pokemon" />
+    </Modal>
   </div>
-  <Modal :isOpen="toggleModal" @close="toggleModal = false">
-    <PokemonModal :pokemonDetails="pokemon" />
-  </Modal>
 </template>
 
 <script>

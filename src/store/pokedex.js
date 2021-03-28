@@ -1,13 +1,14 @@
 export const PokedexMoudle = {
     namespaced: true,
     state: {
-        pokedex: {
-            kanto: null,
-        }
+        pokedex: null,
+    },
+    getters: {
+
     },
     mutations: {
         SET_POKEDEX(state, region) {
-
+            state.pokedex = region
         }
     },
     actions: {

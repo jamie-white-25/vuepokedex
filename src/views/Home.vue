@@ -1,5 +1,5 @@
 <template>
-  <div
+  <main
     class="pb-10 sm:pb-32 lg:pt-8 lg:pb-14 lg:overflow-hidden bg-gradient-to-r from-red-500 to-pink-600 flex items-center h-calc"
   >
     <div class="mx-auto max-w-7xl lg:px-8">
@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script>
