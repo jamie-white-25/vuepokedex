@@ -1,15 +1,32 @@
 <template>
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <section class="bg-white">
+    <section class="bg-white" v-if="error">
       <div
         class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
       >
         <div class="text-center">
-          <!-- <h2
-            class="text-base font-semibold text-indigo-600 tracking-wide uppercase"
+          <p
+            class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
           >
-            Pricing
-          </h2> -->
+            404
+          </p>
+
+          <p
+            class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
+          >
+            <span class="bold capitalize text-red-500">{{
+              error.message
+            }}</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white" v-else>
+      <div
+        class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
+      >
+        <div class="text-center">
           <p
             class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
           >
@@ -33,40 +50,53 @@
           </div>
         </div>
       </div>
+      <PokemonList :list="pokedex" @open="openModal" />
+
+      <Modal
+        :isOpen="toggleModal"
+        @close="(toggleModal = false), (pokemon = null)"
+      >
+        <PokemonModal :pokemonDetails="pokemon" />
+      </Modal>
     </section>
-    <h1 v-if="error">{{ error.status }}</h1>
-
-    <PokemonList :list="pokedex" @open="openModal" />
-
-    <Modal :isOpen="toggleModal" @close="toggleModal = false">
-      <PokemonModal :pokemonDetails="pokemon" />
-    </Modal>
   </div>
 </template>
 
 <script>
+import { useRoute } from "vue-router";
+import { useStore } from "vuex";
+import { computed, onMounted, watch, ref } from "vue";
 import Modal from "@/components/Modal.vue";
 import PokemonModal from "@/components/PokemonModal.vue";
 import PokemonList from "@/components/PokemonList.vue";
-import setup from "@/composables/getPokemon";
-import { computed, onMounted, watch, ref } from "vue";
-import { useRoute } from "vue-router";
+import setupPokemonApi from "@/composables/getPokemon";
 
 export default {
   components: { Modal, PokemonList, PokemonModal },
   setup() {
+    const store = useStore();
     const toggleModal = ref(false);
     const route = useRoute();
     const region = computed(() => route.params.name ?? "");
-    const { pokedex, pokemon, error, getRegion, getPokemon } = setup();
+    const pokedex = computed(() => store.state.Pokedex.pokedex);
+    const { pokemon, error, getRegion, getPokemon } = setupPokemonApi();
 
     onMounted(() => {
-      region.value !== "" ? getRegion(region.value.toLocaleLowerCase()) : "";
+      updatePokdex();
     });
 
     watch(region, () => {
-      region.value !== "" ? getRegion(region.value.toLocaleLowerCase()) : "";
+      updatePokdex();
+      error.value = null;
     });
+
+    const updatePokdex = async () => {
+      store.dispatch(
+        "Pokedex/setPokedex",
+        await getRegion(region.value.toLocaleLowerCase())
+      );
+      store.dispatch("Pokedex/setRegion", region.value.toLocaleLowerCase());
+    };
 
     const openModal = (num) => {
       getPokemon(num);

@@ -13,22 +13,17 @@
           </div>
         </div>
         <div class="hidden sm:ml-6 sm:flex sm:items-center">
-          <div class="hidden sm:ml-2 sm:flex sm:space-x-8">
+          <div
+            class="hidden sm:ml-2 sm:flex sm:space-x-8"
+            v-for="region in regions"
+            :key="region"
+          >
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
             <router-link
-              :to="{ name: 'Region', params: { name: 'kanto' } }"
-              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:text-gray-200"
+              :to="{ name: 'Region', params: { name: region } }"
+              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:text-gray-200 capitalize"
             >
-              Kanto
-            </router-link>
-          </div>
-          <div class="hidden sm:ml-2 sm:flex sm:space-x-8">
-            <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-            <router-link
-              :to="{ name: 'Region', params: { name: 'johto' } }"
-              class="text-gray-100 inline-flex items-center px-1 pt-1 text-md font-bold hover:text-gray-200"
-            >
-              Johto
+              {{ region }}
             </router-link>
           </div>
         </div>
@@ -39,7 +34,7 @@
             class="inline-flex items-center justify-center p-2 rounded-md text-white hover:text-gray-100 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-100"
             aria-controls="mobile-menu"
             aria-expanded="false"
-            @click="state.menu = !state.menu"
+            @click="menu = !menu"
           >
             <span class="sr-only">Open main menu</span>
             <!-- Icon when menu is closed. -->
@@ -90,11 +85,7 @@
     </div>
 
     <!-- Mobile menu, show/hide based on menu state. -->
-    <div
-      class="sm:hidden"
-      :class="state.menu ? 'block' : 'hidden'"
-      id="mobile-menu"
-    >
+    <div class="sm:hidden" :class="menu ? 'block' : 'hidden'" id="mobile-menu">
       <div class="pt-2 pb-3 space-y-1">
         <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
       </div>
@@ -103,19 +94,28 @@
 </template>
 
 <script>
-import { reactive } from "vue";
+import { ref } from "vue";
 // @ is an alias to /src
 
 export default {
   name: "Navbar",
   components: {},
   setup() {
-    const state = reactive({
-      menu: false,
-    });
+    const menu = ref(false);
+    const regions = [
+      "kanto",
+      "johto",
+      "hoenn",
+      "sinnoh",
+      "unova",
+      "kalos",
+      "alola",
+      "galar",
+    ];
 
     return {
-      state,
+      menu,
+      regions,
     };
   },
 };

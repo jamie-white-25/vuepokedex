@@ -1,11 +1,11 @@
 <template>
   <ul
     class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-16"
-    :class="(pokedex.length > 0, timer) ? 'flex' : 'hidden'"
+    :class="(pokemonList.length > 0, timer) ? 'flex' : 'hidden'"
   >
     <li
       class="col-span-1 flex flex-col text-center bg-white rounded-lg hover:bg-gray-200 py-12"
-      v-for="pokemon in pokedex"
+      v-for="pokemon in pokemonList"
       :key="pokemon.number"
       :data-id="pokemon.number"
       @click="clicked(pokemon.number)"
@@ -32,7 +32,7 @@
 
   <ul
     class="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-3 justify-self-center mt-16"
-    :class="(pokedex.length < 0, timer === false) ? 'flex' : 'hidden'"
+    :class="(pokemonList.length < 0, timer === false) ? 'flex' : 'hidden'"
   >
     <li
       class="col-span-1 flex flex-col text-center py-12 animate-pulse"
@@ -40,19 +40,12 @@
       :key="n"
     >
       <div
-        class="rounded-full bg-gradient-to-r from-red-500 to-pink-600  img-placeholder lg:h-40 mx-auto"
-      ></div>
-      <div class="">
-        <h3 class="mt-2 text-gray-900 text-sm font-medium"></h3>
+        class="flex justify-items-center justify-center right-1/2 bottom-1/2 "
+      >
         <div
-          class="h-4 mt-8 mx-auto bg-gradient-to-r from-red-500 to-pink-600  rounded w-1/4"
+          style="border-top-color:transparent"
+          class="border-solid animate-spin  rounded-full border-red-400 border-8 h-24 w-24"
         ></div>
-        <div
-          class="h-4 mt-3 mx-auto bg-gradient-to-r from-red-500 to-pink-600 rounded w-1/5"
-        ></div>
-        <dl class="mt-2 flex-grow flex flex-col justify-between">
-          <dd class="text-gray-500 text-sm"></dd>
-        </dl>
       </div>
     </li>
   </ul>
@@ -72,7 +65,7 @@ export default {
   },
   setup(props, ctx) {
     const timer = ref(false);
-    const pokedex = computed(() => props.list);
+    const pokemonList = computed(() => props.list);
 
     const clicked = function(number) {
       ctx.emit("open", number);
@@ -82,7 +75,7 @@ export default {
       setTimer();
     });
 
-    watch(pokedex, () => {
+    watch(pokemonList, () => {
       timer.value = false;
       setTimer();
     });
@@ -94,7 +87,7 @@ export default {
     };
 
     return {
-      pokedex,
+      pokemonList,
       clicked,
       timer,
     };

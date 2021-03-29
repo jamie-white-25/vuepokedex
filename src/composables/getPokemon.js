@@ -1,49 +1,25 @@
 import { ref } from "@vue/reactivity";
 import Axios from "axios";
+import validatedRegion from "./validateRegion";
 
-const setup = () => {
-    const pokedex = ref([]);
+const setupPokemonApi = () => {
     const pokemon = ref(null);
     const error = ref(null);
 
     const getRegion = async (region) => {
-        switch (region) {
-            case "kanto":
-                region = 1;
-                break;
-            case "johto":
-                region = 2;
-                break;
-            case "hoenn":
-                region = 3;
-                break;
-            case "sinnoh":
-                region = 4;
-                break;
-            case "unova":
-                region = 5;
-                break;
-            case "kalos":
-                region = 6;
-                break;
-            case "alola":
-                region = 7;
-                break;
-            case "galar":
-                region = 8;
-                break;
-            default:
-                region = 0;
-                break;
+        region = await validatedRegion(region)
+
+        if (!region.value) {
+            error.value = { message: 'Region not found' };
+            return [];
         }
 
         try {
             let res = await Axios({
-                url: `https://pokeapi.co/api/v2/generation/${region}/`,
+                url: `https://pokeapi.co/api/v2/generation/${region.value}/`,
             });
-
             let data = await getNumberAndImage(res.data.pokemon_species);
-            pokedex.value = data;
+            return data;
         } catch (err) {
             error.value = err;
         }
@@ -60,7 +36,7 @@ const setup = () => {
         }
     };
 
-    return { pokedex, pokemon, error, getRegion, getPokemon };
+    return { pokemon, error, getRegion, getPokemon };
 };
 
 const getNumberAndImage = (pokemonArr) => {
@@ -79,4 +55,4 @@ const getNumberAndImage = (pokemonArr) => {
     return pokemonArr;
 };
 
-export default setup;
+export default setupPokemonApi;
