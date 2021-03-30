@@ -8,7 +8,7 @@
       v-for="pokemon in pokemonList"
       :key="pokemon.number"
       :data-id="pokemon.number"
-      @click="clicked(pokemon.number)"
+      @click="clickedPokemon(pokemon.number)"
     >
       <div class="flex-1 flex flex-col  mx-6">
         <img
@@ -52,23 +52,22 @@
 </template>
 
 <script>
+import { useStore } from "vuex";
 import { computed, onMounted, ref, watch } from "vue";
+import setupPokemonApi from "@/composables/getPokemon";
 
 export default {
   name: "PokemonList",
-  emits: ["open"],
-  props: {
-    list: {
-      type: Array,
-      required: true,
-    },
-  },
-  setup(props, ctx) {
+  setup() {
+    const store = useStore();
     const timer = ref(false);
-    const pokemonList = computed(() => props.list);
+    const { getPokemon } = setupPokemonApi();
+    const pokemonList = computed(() => store.state.Pokedex.pokedex);
 
-    const clicked = function(number) {
-      ctx.emit("open", number);
+    const clickedPokemon = async (num) => {
+      store.dispatch("Pokemon/setPokemon", await getPokemon(num));
+      store.dispatch("Pokemon/setIsModalOpen", true);
+      console.log(store.state.Pokemon.isModalOpen);
     };
 
     onMounted(() => {
@@ -87,9 +86,9 @@ export default {
     };
 
     return {
-      pokemonList,
-      clicked,
       timer,
+      pokemonList,
+      clickedPokemon,
     };
   },
 };

@@ -3,7 +3,6 @@ import Axios from "axios";
 import validatedRegion from "./validateRegion";
 
 const setupPokemonApi = () => {
-    const pokemon = ref(null);
     const error = ref(null);
 
     const getRegion = async (region) => {
@@ -30,13 +29,13 @@ const setupPokemonApi = () => {
             let res = await Axios({
                 url: `https://pokeapi.co/api/v2/pokemon/${num}/`,
             });
-            pokemon.value = res.data;
+            return res.data;
         } catch (err) {
             error.value = err;
         }
     };
 
-    return { pokemon, error, getRegion, getPokemon };
+    return { error, getRegion, getPokemon };
 };
 
 const getNumberAndImage = (pokemonArr) => {

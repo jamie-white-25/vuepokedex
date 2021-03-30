@@ -34,7 +34,7 @@
               <div class="flex pb-8">
                 <button
                   type="button"
-                  class="inline-flex ml-auto items-center p-2 border border-transparent rounded-full shadow-sm text-gray-400 bg-gray-200 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                  class="inline-flex ml-auto items-center p-2 border border-transparent rounded-full shadow-sm text-gray-400 bg-gray-200 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400"
                   @click="closeModal"
                 >
                   <!-- Heroicon name: outline/plus -->

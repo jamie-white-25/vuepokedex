@@ -50,13 +50,10 @@
           </div>
         </div>
       </div>
-      <PokemonList :list="pokedex" @open="openModal" />
+      <PokemonList />
 
-      <Modal
-        :isOpen="toggleModal"
-        @close="(toggleModal = false), (pokemon = null)"
-      >
-        <PokemonModal :pokemonDetails="pokemon" />
+      <Modal :isOpen="toggleModal" @close="closeModal">
+        <PokemonModal />
       </Modal>
     </section>
   </div>
@@ -65,7 +62,7 @@
 <script>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { computed, onMounted, watch, ref } from "vue";
+import { computed, onMounted, watch } from "vue";
 import Modal from "@/components/Modal.vue";
 import PokemonModal from "@/components/PokemonModal.vue";
 import PokemonList from "@/components/PokemonList.vue";
@@ -75,11 +72,11 @@ export default {
   components: { Modal, PokemonList, PokemonModal },
   setup() {
     const store = useStore();
-    const toggleModal = ref(false);
     const route = useRoute();
+    const toggleModal = computed(() => store.state.Pokemon.isModalOpen);
     const region = computed(() => route.params.name ?? "");
     const pokedex = computed(() => store.state.Pokedex.pokedex);
-    const { pokemon, error, getRegion, getPokemon } = setupPokemonApi();
+    const { error, getRegion } = setupPokemonApi();
 
     onMounted(() => {
       updatePokdex();
@@ -98,9 +95,9 @@ export default {
       store.dispatch("Pokedex/setRegion", region.value.toLocaleLowerCase());
     };
 
-    const openModal = (num) => {
-      getPokemon(num);
-      toggleModal.value = true;
+    const closeModal = () => {
+      store.dispatch("Pokemon/setPokemon", null);
+      store.dispatch("Pokemon/setIsModalOpen", false);
     };
 
     return {
@@ -108,8 +105,7 @@ export default {
       pokedex,
       error,
       toggleModal,
-      openModal,
-      pokemon,
+      closeModal,
     };
   },
 };

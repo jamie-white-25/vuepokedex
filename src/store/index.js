@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import { PokedexModule } from "./pokedex";
+import { PokemonModule } from "./pokemon";
 
 export default createStore({
   state: {
@@ -12,6 +13,7 @@ export default createStore({
 
   },
   modules: {
-    Pokedex: PokedexModule
+    Pokedex: PokedexModule,
+    Pokemon: PokemonModule
   }
 });
