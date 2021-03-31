@@ -37,14 +37,16 @@
             @click="menu = !menu"
           >
             <span class="sr-only">Open main menu</span>
-            <!-- Icon when menu is closed. -->
             <!--
+            Icon when menu is closed.
+
             Heroicon name: outline/menu
 
             Menu open: "hidden", Menu closed: "block"
           -->
             <svg
-              class="block h-6 w-6"
+              class="h-6 w-6"
+              :class="!menu ? 'block' : 'hidden'"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -58,14 +60,16 @@
                 d="M4 6h16M4 12h16M4 18h16"
               />
             </svg>
-            <!-- Icon when menu is open. -->
             <!--
+            Icon when menu is open.
+
             Heroicon name: outline/x
 
             Menu open: "block", Menu closed: "hidden"
           -->
             <svg
-              class="hidden h-6 w-6"
+              class="h-6 w-6"
+              :class="menu ? 'block' : 'hidden'"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
               viewBox="0 0 24 24"
@@ -86,8 +90,15 @@
 
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" :class="menu ? 'block' : 'hidden'" id="mobile-menu">
-      <div class="pt-2 pb-3 space-y-1">
-        <!-- Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" -->
+      <div class="pb-3 space-y-1">
+        <router-link
+          v-for="region in regions"
+          :key="region"
+          :to="{ name: 'Region', params: { name: region } }"
+          class="text-gray-100 items-center pt-3 text-md font-bold hover:text-gray-200 capitalize block mx-4"
+        >
+          {{ region }}
+        </router-link>
       </div>
     </div>
   </nav>

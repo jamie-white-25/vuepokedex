@@ -58,16 +58,20 @@ import setupPokemonApi from "@/composables/getPokemon";
 
 export default {
   name: "PokemonList",
-  setup() {
+  props: {
+    list: {
+      require: true,
+    },
+  },
+  setup(props) {
     const store = useStore();
     const timer = ref(false);
     const { getPokemon } = setupPokemonApi();
-    const pokemonList = computed(() => store.state.Pokedex.pokedex);
+    const pokemonList = computed(() => props.list);
 
     const clickedPokemon = async (num) => {
       store.dispatch("Pokemon/setPokemon", await getPokemon(num));
       store.dispatch("Pokemon/setIsModalOpen", true);
-      console.log(store.state.Pokemon.isModalOpen);
     };
 
     onMounted(() => {
@@ -82,7 +86,7 @@ export default {
     const setTimer = () => {
       setTimeout(() => {
         timer.value = true;
-      }, 3000);
+      }, 300);
     };
 
     return {

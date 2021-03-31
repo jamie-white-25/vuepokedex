@@ -6,7 +6,6 @@ export const PokedexModule = {
         region: null,
     },
     getters: {
-
     },
     mutations: {
         SET_POKEDEX(state, region) {

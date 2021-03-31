@@ -40,17 +40,18 @@
           </p>
 
           <div class="p-10 max-w-lg mx-auto mt-5">
-            <div class="min-w-0 flex-1" data-v-fae5bece="">
+            <div class="min-w-0 flex-1">
               <input
                 type="text"
                 placeholder="Search for a Pokemon"
-                class="block w-full px-4 py-3 border-b-2 text-base text-center text-gray-900 placeholder-gray-500 focus:outline-none border-red-400"
+                class="block w-full px-4 py-3 border-b-2 text-base focus:outline-none border-red-400 text-center"
+                v-model="search"
               />
             </div>
           </div>
         </div>
       </div>
-      <PokemonList />
+      <PokemonList :list="filterPokemon" />
 
       <Modal :isOpen="toggleModal" @close="closeModal">
         <PokemonModal />
@@ -60,9 +61,9 @@
 </template>
 
 <script>
-import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { computed, onMounted, watch } from "vue";
+import { useRoute } from "vue-router";
+import { computed, onMounted, watch, ref } from "vue";
 import Modal from "@/components/Modal.vue";
 import PokemonModal from "@/components/PokemonModal.vue";
 import PokemonList from "@/components/PokemonList.vue";
@@ -73,9 +74,11 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
-    const toggleModal = computed(() => store.state.Pokemon.isModalOpen);
-    const region = computed(() => route.params.name ?? "");
     const pokedex = computed(() => store.state.Pokedex.pokedex);
+    const search = ref("");
+    const region = computed(() => route.params.name ?? "");
+    const toggleModal = computed(() => store.state.Pokemon.isModalOpen);
+
     const { error, getRegion } = setupPokemonApi();
 
     onMounted(() => {
@@ -85,6 +88,12 @@ export default {
     watch(region, () => {
       updatePokdex();
       error.value = null;
+    });
+
+    const filterPokemon = computed(() => {
+      return pokedex.value.filter((pokemon) => {
+        return pokemon.name.includes(search.value);
+      });
     });
 
     const updatePokdex = async () => {
@@ -101,11 +110,13 @@ export default {
     };
 
     return {
+      error,
+      search,
       region,
       pokedex,
-      error,
-      toggleModal,
       closeModal,
+      toggleModal,
+      filterPokemon,
     };
   },
 };

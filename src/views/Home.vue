@@ -16,7 +16,9 @@
                 class="px-3 py-0.5 text-white bg-red-500 text-xs font-semibold leading-5 uppercase tracking-wide rounded-full"
                 >the pokedex</span
               >
-              <span class="ml-4 text-sm">Visit the Kanto page</span>
+              <span class="ml-4 text-sm"
+                >Click on a page to see the region</span
+              >
               <svg
                 class="ml-2 w-5 h-5 text-gray-500"
                 x-description="Heroicon name: solid/chevron-right"
@@ -47,26 +49,15 @@
               or search for a pokemon.
             </p>
             <div class="mt-10 sm:mt-12">
-              <form action="#" class="sm:max-w-xl sm:mx-auto lg:mx-0">
-                <div class="sm:flex">
-                  <div class="min-w-0 flex-1">
-                    <label for="email" class="sr-only">Email address</label>
-                    <input
-                      type="text"
-                      placeholder="Search for a Pokemon"
-                      class="block w-full px-4 py-3 border-b text-base text-gray-900 placeholder-gray-500 focus:outline-none border-red-500"
-                    />
-                  </div>
-                  <div class="mt-3 sm:mt-0 sm:ml-3">
-                    <button
-                      type="submit"
-                      class="block w-full py-3 px-4 rounded-md shadow bg-red-600 text-white font-medium hover:from-teal-600 hover:to-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800 focus:ring-offset-red-900"
-                    >
-                      Find Pokemon
-                    </button>
-                  </div>
-                </div>
-              </form>
+              <div class="min-w-0 flex-1">
+                <input
+                  type="text"
+                  placeholder="Search for a Pokemon"
+                  class="block w-full px-4 py-3 border-b-2 text-base
+                focus:outline-none border-white text-left placeholder-gray-100
+                bg-transparent text-white"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -92,7 +83,7 @@
 
 export default {
   name: "Home",
-  components: {},
+  setup() {},
 };
 </script>
 

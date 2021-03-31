@@ -18,6 +18,30 @@
     </div>
 
     <div v-else>
+      <section
+        class="flex pb-2 justify-end items-center transform transition-all"
+      >
+        <div class="flex items-center">
+          <span class="mr-3" id="annual-billing-label">
+            <span class="text-sm font-medium text-gray-500">Toggle shiny</span>
+          </span>
+          <button
+            type="button"
+            class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none"
+            :class="shinyToggle ? pokemon.types[0].type.name : 'bg-gray-200'"
+            :aria-pressed="shinyToggle"
+            aria-labelledby="annual-billing-label"
+            @click="shinyToggle = !shinyToggle"
+          >
+            <span class="sr-only">Use setting</span>
+            <span
+              aria-hidden="true"
+              class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
+              :class="shinyToggle ? 'translate-x-5' : 'translate-x-0'"
+            ></span>
+          </button>
+        </div>
+      </section>
       <section class="flex mb-8">
         <div
           class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
@@ -43,150 +67,16 @@
         </div>
       </section>
 
-      <section
-        class="flex pb-2 justify-between items-center transform transition-all"
-      >
-        <h3 class="text-md capitalize text-gray-500 font-bold">
-          Basic Information
-        </h3>
-        <div class="flex items-center">
-          <span class="mr-3" id="annual-billing-label">
-            <span class="text-sm font-medium text-gray-500">Toggle shiny</span>
-          </span>
-          <button
-            type="button"
-            class="relative inline-flex flex-shrink-0 h-6 w-11 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 focus:outline-none"
-            :class="shinyToggle ? pokemon.types[0].type.name : 'bg-gray-200'"
-            :aria-pressed="shinyToggle"
-            aria-labelledby="annual-billing-label"
-            @click="shinyToggle = !shinyToggle"
-          >
-            <span class="sr-only">Use setting</span>
-            <span
-              aria-hidden="true"
-              class="translate-x-0 pointer-events-none inline-block h-5 w-5 rounded-full bg-white shadow transform ring-0 transition ease-in-out duration-200"
-              :class="shinyToggle ? 'translate-x-5' : 'translate-x-0'"
-            ></span>
-          </button>
-        </div>
-      </section>
-
-      <section class="flex flex-col">
-        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div
-            class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
-          >
-            <div
-              class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
-            >
-              <table class="min-w-full divide-y divide-gray-200">
-                <tbody class="bg-gray-100">
-                  <!-- Odd row -->
-                  <tr>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      Name:
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 capitalize font-bold"
-                    >
-                      {{ pokemon.name }}
-                    </td>
-                  </tr>
-
-                  <!-- Even row -->
-                  <tr>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      Type:
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
-                    >
-                      <div class="flex">
-                        <span
-                          v-for="types in pokemon.types"
-                          :key="types"
-                          :class="types.type.name"
-                          class="inline-flex items-center px-2.5 py-0.5 rounded-md text-md mr-2 text-gray-100 font-bold capitalize tracking-wider"
-                        >
-                          {{ types.type.name }}
-                        </span>
-                      </div>
-                    </td>
-                  </tr>
-
-                  <!-- Odd row -->
-                  <tr>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      ID:
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
-                    >
-                      {{ pokemon.id }}
-                    </td>
-                  </tr>
-
-                  <!-- Odd row -->
-                  <tr>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      Weight:
-                    </td>
-                    <td
-                      class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
-                    >
-                      {{ pokemon.weight / 10 }} kg
-                    </td>
-                  </tr>
-
-                  <!-- Even row -->
-                  <tr v-for="stats in pokemon.stats" :key="stats.name">
-                    <td
-                      class="px-6 py-4 capitalize whitespace-nowrap text-sm font-medium text-gray-900"
-                    >
-                      {{ stats.stat.name }}:
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold">
-                      <!-- <h2 class="px-2 text-gray-600">{{ stats.base_stat }}</h2> -->
-                      <div class="shadow w-full bg-gray-400">
-                        <div
-                          class="text-md leading-none py-1 text-center text-white"
-                          :class="pokemon.types[0].type.name"
-                          :style="
-                            'width:' +
-                              Math.floor((stats.base_stat / 255) * 100) +
-                              '%'
-                          "
-                        >
-                          {{ stats.base_stat }}
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <div v-if="pokemon.moves.length > 0">
-        <section
-          class="flex pb-2 justify-between items-center transform transition-all mt-8"
+      <section v-if="pagination === 1">
+        <div
+          class="flex pb-2 justify-between items-center transform transition-all"
         >
           <h3 class="text-md capitalize text-gray-500 font-bold">
-            Moves
+            Basic Information
           </h3>
-        </section>
+        </div>
 
-        <section class="flex flex-col">
+        <div class="flex flex-col">
           <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div
               class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
@@ -196,12 +86,108 @@
               >
                 <table class="min-w-full divide-y divide-gray-200">
                   <tbody class="bg-gray-100">
-                    <!-- moves -->
-                    <tr v-for="moves in pokemon.moves" :key="moves">
+                    <!-- Odd row -->
+                    <tr>
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
                       >
-                        {{ moves.move.name }}
+                        Name:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 capitalize font-bold"
+                      >
+                        {{ pokemon.name }}
+                      </td>
+                    </tr>
+
+                    <!-- Even row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        Type:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        <div class="flex">
+                          <span
+                            v-for="types in pokemon.types"
+                            :key="types"
+                            :class="types.type.name"
+                            class="inline-flex items-center px-2.5 py-0.5 rounded-md text-md mr-2 text-gray-100 font-bold capitalize tracking-wider"
+                          >
+                            {{ types.type.name }}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Odd row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        ID:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        {{ pokemon.id }}
+                      </td>
+                    </tr>
+
+                    <!-- Odd row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        Weight:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        {{ pokemon.weight / 10 }} kg
+                      </td>
+                    </tr>
+
+                    <!-- Even row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        Height:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        {{ pokemon.height / 10 }}
+                        meters
+                      </td>
+                    </tr>
+
+                    <!-- Even row -->
+                    <tr v-for="stats in pokemon.stats" :key="stats.name">
+                      <td
+                        class="px-6 py-4 capitalize whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        {{ stats.stat.name }}:
+                      </td>
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-bold">
+                        <!-- <h2 class="px-2 text-gray-600">{{ stats.base_stat }}</h2> -->
+                        <div class="shadow w-full bg-gray-400">
+                          <div
+                            class="text-md leading-none py-1 text-center text-white"
+                            :class="pokemon.types[0].type.name"
+                            :style="
+                              'width:' +
+                                Math.floor((stats.base_stat / 255) * 100) +
+                                '%'
+                            "
+                          >
+                            {{ stats.base_stat }}
+                          </div>
+                        </div>
                       </td>
                     </tr>
                   </tbody>
@@ -209,22 +195,87 @@
               </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
+
+      <section v-if="pokemon.moves.length > 0 && pagination === 2">
+        <div>
+          <div
+            class="flex pb-2 justify-between items-center transform transition-all mt-8"
+          >
+            <h3 class="text-md capitalize text-gray-500 font-bold">
+              Moves
+            </h3>
+          </div>
+
+          <div class="flex flex-col">
+            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+              <div
+                class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8"
+              >
+                <div
+                  class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg"
+                >
+                  <table class="min-w-full divide-y divide-gray-200">
+                    <tbody class="bg-gray-100">
+                      <!-- moves -->
+                      <tr v-for="moves in pokemon.moves" :key="moves">
+                        <td
+                          class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                        >
+                          {{ moves.move.name }}
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="mt-8 flex justify-end">
+        <button
+          type="button"
+          class="inline-flex items-center px-3 py-1.5 text-white border border-gray-100 rounded-md text-md mr-2 font-bold capitalize tracking-wider"
+          :class="
+            pagination === 2 ? pokemon.types[0].type.name + ' show' : 'hidden'
+          "
+          @click="paginate(1)"
+        >
+          Stats
+        </button>
+        <button
+          type="button"
+          class="inline-flex items-center px-3 py-1.5 text-white border border-gray-100 rounded-md text-dm mr-2 font-bold capitalize tracking-wider"
+          :class="
+            pagination === 1 ? pokemon.types[0].type.name + ' show' : 'hidden'
+          "
+          @click="paginate(2)"
+        >
+          Moves
+        </button>
       </div>
     </div>
   </transition>
 </template>
 
 <script>
-import { computed, ref, watch } from "vue";
+import { ref, watch } from "vue";
 import { useStore } from "vuex";
 
 export default {
   name: "PokemonModal",
   setup() {
     const store = useStore();
-    const pokemon = computed(() => store.state.Pokemon.pokemon);
+    const pokemon = store.state.Pokemon.pokemon;
     const shinyToggle = ref(false);
+    const pagination = ref(1);
+
+    const paginate = (num) => {
+      pagination.value = num;
+    };
 
     watch(pokemon, () => {
       shinyToggle.value = false;
@@ -232,6 +283,8 @@ export default {
 
     return {
       pokemon,
+      paginate,
+      pagination,
       shinyToggle,
     };
   },
