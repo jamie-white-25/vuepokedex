@@ -87,6 +87,7 @@ export default {
 
     watch(region, () => {
       updatePokdex();
+      search.value = "";
       error.value = null;
     });
 

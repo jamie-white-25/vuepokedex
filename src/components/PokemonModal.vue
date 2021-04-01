@@ -100,7 +100,7 @@
                       </td>
                     </tr>
 
-                    <!-- Even row -->
+                    <!-- Type row -->
                     <tr>
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -123,7 +123,7 @@
                       </td>
                     </tr>
 
-                    <!-- Odd row -->
+                    <!-- ID row -->
                     <tr>
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -137,7 +137,32 @@
                       </td>
                     </tr>
 
-                    <!-- Odd row -->
+                    <!-- Type row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        Abilities:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        <div class="flex flex-wrap">
+                          <span
+                            v-for="abilities in pokemon.abilities"
+                            :key="abilities.ability.name"
+                            class="flex flex-wrap items-center px-2.5 py-0.5
+                            rounded-md text-md mr-2 text-gray-100 font-bold
+                            capitalize tracking-wider mb-1"
+                            :class="pokemon.types[0].type.name"
+                          >
+                            {{ abilities.ability.name }}
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+
+                    <!-- Weight row -->
                     <tr>
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -151,7 +176,7 @@
                       </td>
                     </tr>
 
-                    <!-- Even row -->
+                    <!-- Height row -->
                     <tr>
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
@@ -166,7 +191,21 @@
                       </td>
                     </tr>
 
-                    <!-- Even row -->
+                    <!-- Experience row -->
+                    <tr>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+                      >
+                        Base Experience:
+                      </td>
+                      <td
+                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
+                      >
+                        {{ pokemon.base_experience }} xp
+                      </td>
+                    </tr>
+
+                    <!-- stats row -->
                     <tr v-for="stats in pokemon.stats" :key="stats.name">
                       <td
                         class="px-6 py-4 capitalize whitespace-nowrap text-sm font-medium text-gray-900"

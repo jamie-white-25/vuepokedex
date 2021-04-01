@@ -43,15 +43,16 @@
               > -->
             </h1>
             <p
-              class="mt-3 text-base text-gray-400 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
+              class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-xl lg:text-lg xl:text-xl"
             >
-              Click on each region to show the new pokemon of that generation,
-              or search for a pokemon.
+              Click on each region to show the pokedex for that region, or
+              search for a pokemon.
             </p>
             <div class="mt-10 sm:mt-12">
               <div class="min-w-0 flex-1">
                 <input
                   type="text"
+                  v-model="search"
                   placeholder="Search for a Pokemon"
                   class="block w-full px-4 py-3 border-b-2 text-base
                 focus:outline-none border-white text-left placeholder-gray-100
@@ -79,11 +80,22 @@
 </template>
 
 <script>
+import { ref, watch } from "vue";
 // @ is an alias to /src
 
 export default {
   name: "Home",
-  setup() {},
+  setup() {
+    const search = ref("");
+
+    watch(search, () => {
+      console.log(search);
+    });
+
+    return {
+      search,
+    };
+  },
 };
 </script>
 
