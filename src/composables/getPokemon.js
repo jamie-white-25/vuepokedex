@@ -43,6 +43,7 @@ const getNumberAndImage = (pokemonArr) => {
         let url = pokemon.url.substr(42, 4);
         let number = url.replace("/", "");
         let spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${number}.png`;
+        // let spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${number}.png`;
         pokemon.number = number;
         pokemon.img = spriteUrl;
     });
