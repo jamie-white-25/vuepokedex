@@ -24,10 +24,10 @@ const setupPokemonApi = () => {
         }
     };
 
-    const getPokemon = async (num) => {
+    const getPokemon = async (value) => {
         try {
             let res = await Axios({
-                url: `https://pokeapi.co/api/v2/pokemon/${num}/`,
+                url: `https://pokeapi.co/api/v2/pokemon/${value}/`,
             });
             return res.data;
         } catch (err) {

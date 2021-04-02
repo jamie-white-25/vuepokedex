@@ -76,6 +76,7 @@ export default {
 
     onMounted(() => {
       setTimer();
+      console.log(pokemonList);
     });
 
     watch(pokemonList, () => {

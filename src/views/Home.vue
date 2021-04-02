@@ -49,15 +49,37 @@
               search for a pokemon.
             </p>
             <div class="mt-10 sm:mt-12">
-              <div class="min-w-0 flex-1">
+              <div class="min-w-0 flex items-center">
                 <input
                   type="text"
                   v-model="search"
+                  @change="searchForPokemon"
                   placeholder="Search for a Pokemon"
                   class="block w-full px-4 py-3 border-b-2 text-base
                 focus:outline-none border-white text-left placeholder-gray-100
                 bg-transparent text-white"
                 />
+                <svg
+                  class="animate-spin -ml-8 h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  :class="search.length > 2 ? 'show' : 'hidden'"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
               </div>
             </div>
           </div>
@@ -67,9 +89,10 @@
             class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 lg:max-w-none lg:ml-auto lg:mr-0 self-center"
           >
             <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
+
             <img
               class="lg:inset-y-0 lg:left-0 w-auto h-44 md:h-48 lg:h-96 self-center hidden lg:flex"
-              src="https://cdn.pixabay.com/photo/2016/07/23/13/18/pokemon-1536848_960_720.png"
+              :src="pokemonImg"
               alt=""
             />
           </div>
@@ -80,20 +103,39 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
+import { onMounted, ref } from "vue";
+import { useRouter } from "vue-router";
 // @ is an alias to /src
 
 export default {
-  name: "Home",
   setup() {
     const search = ref("");
+    const router = useRouter();
+    const pokemonImg = ref(0);
 
-    watch(search, () => {
-      console.log(search);
+    onMounted(() => {
+      pokemonImg.value = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${Math.floor(
+        Math.random() * 898
+      ) + 1}.png`;
     });
+
+    const searchForPokemon = () => {
+      setTimeout(() => {
+        if (search.value !== "" && search.value.length > 2) {
+          router.push({
+            name: "Search",
+            params: {
+              pokemon: search.value,
+            },
+          });
+        }
+      }, 1000);
+    };
 
     return {
       search,
+      pokemonImg,
+      searchForPokemon,
     };
   },
 };

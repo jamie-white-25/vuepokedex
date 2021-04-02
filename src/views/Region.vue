@@ -1,5 +1,5 @@
 <template>
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <section class="bg-white" v-if="error">
       <div
         class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
@@ -40,7 +40,7 @@
           </p>
 
           <div class="p-10 max-w-lg mx-auto mt-5">
-            <div class="min-w-0 flex-1">
+            <div class="min-w-0 flex items-center">
               <input
                 type="text"
                 placeholder="Search for a Pokemon"
@@ -53,11 +53,11 @@
       </div>
       <PokemonList :list="filterPokemon" />
 
-      <Modal :isOpen="toggleModal" @close="closeModal">
+      <Modal :isOpen="isModalOpen" @close="closeModal">
         <PokemonModal />
       </Modal>
     </section>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -74,12 +74,11 @@ export default {
   setup() {
     const store = useStore();
     const route = useRoute();
-    const pokedex = computed(() => store.state.Pokedex.pokedex);
     const search = ref("");
-    const region = computed(() => route.params.name ?? "");
-    const toggleModal = computed(() => store.state.Pokemon.isModalOpen);
-
     const { error, getRegion } = setupPokemonApi();
+    const region = computed(() => route.params.name ?? "");
+    const pokedex = computed(() => store.state.Pokedex.pokedex);
+    const isModalOpen = computed(() => store.state.Pokemon.isModalOpen);
 
     onMounted(() => {
       updatePokdex();
@@ -116,7 +115,7 @@ export default {
       region,
       pokedex,
       closeModal,
-      toggleModal,
+      isModalOpen,
       filterPokemon,
     };
   },
