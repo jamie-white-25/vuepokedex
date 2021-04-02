@@ -313,7 +313,7 @@
 
 <script>
 import { useRoute } from "vue-router";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import setupPokemonApi from "@/composables/getPokemon";
 
 export default {
@@ -328,7 +328,6 @@ export default {
 
     onMounted(() => {
       searchPokemon(paramsPokemon);
-      //   console.log(paramsPokemon.value);
     });
 
     const searchForPokemon = () => {
@@ -341,11 +340,14 @@ export default {
     };
 
     const searchPokemon = async (seachedPokemon) => {
-      console.log(pokemon);
       pokemon.value = await getPokemon(
         seachedPokemon.value.trim().toLowerCase()
       );
     };
+
+    watch(pokemon, () => {
+      shinyToggle.value = false;
+    });
 
     return {
       search,

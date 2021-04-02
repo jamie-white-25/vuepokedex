@@ -301,16 +301,16 @@
 </template>
 
 <script>
-import { ref, watch } from "vue";
 import { useStore } from "vuex";
+import { computed, ref, watch } from "vue";
 
 export default {
   name: "PokemonModal",
   setup() {
     const store = useStore();
-    const pokemon = store.state.Pokemon.pokemon;
-    const shinyToggle = ref(false);
     const pagination = ref(1);
+    const shinyToggle = ref(false);
+    const pokemon = computed(() => store.state.Pokemon.pokemon);
 
     const paginate = (num) => {
       pagination.value = num;

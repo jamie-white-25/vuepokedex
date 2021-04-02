@@ -91,8 +91,8 @@ export default {
     });
 
     const filterPokemon = computed(() => {
-      return pokedex.value.filter((pokemon) => {
-        return pokemon.name.includes(search.value);
+      return pokedex.value.filter((poke) => {
+        return poke.name.includes(search.value.toLowerCase());
       });
     });
 

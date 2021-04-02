@@ -93,7 +93,7 @@
             <img
               class="lg:inset-y-0 lg:left-0 w-auto h-44 md:h-48 lg:h-96 self-center hidden lg:flex"
               :src="pokemonImg"
-              alt=""
+              alt="pokemon image"
             />
           </div>
         </div>
@@ -125,7 +125,7 @@ export default {
           router.push({
             name: "Search",
             params: {
-              pokemon: search.value,
+              pokemon: search.value.toLowerCase(),
             },
           });
         }

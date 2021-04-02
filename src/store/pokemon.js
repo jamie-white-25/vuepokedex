@@ -10,7 +10,6 @@ export const PokemonModule = {
     mutations: {
         SET_POKEMON(state, pokemon) {
             state.pokemon = pokemon
-            console.log(pokemon)
         },
         SET_IS_MODEL_OPEN(state, isOpen) {
             state.isModalOpen = isOpen
