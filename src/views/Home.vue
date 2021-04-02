@@ -10,7 +10,7 @@
           <div class="lg:py-24">
             <a
               href="#"
-              class="inline-flex items-center text-gray-600 bg-gray-100 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-red-700"
+              class="items-center text-gray-600 bg-gray-100 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-red-700 hidden sm:inline-flex"
             >
               <span
                 class="px-3 py-0.5 text-white bg-red-500 text-xs font-semibold leading-5 uppercase tracking-wide rounded-full"
