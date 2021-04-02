@@ -87,7 +87,7 @@ export default {
     const setTimer = () => {
       setTimeout(() => {
         timer.value = true;
-      }, 300);
+      }, 1000);
     };
 
     return {
