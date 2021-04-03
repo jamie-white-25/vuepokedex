@@ -95,7 +95,6 @@
           v-for="region in regions"
           :key="region"
           :to="{ name: 'Region', params: { name: region } }"
-          @click="closeMenu"
           class="text-gray-100 items-center pt-3 text-md font-bold hover:text-gray-200 capitalize block mx-4"
         >
           {{ region }}
