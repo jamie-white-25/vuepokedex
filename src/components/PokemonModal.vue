@@ -110,12 +110,12 @@
                       <td
                         class="px-6 py-4 whitespace-nowrap text-sm text-gray-600 font-bold"
                       >
-                        <div class="flex">
+                        <div class="flex flex-wrap">
                           <span
                             v-for="types in pokemon.types"
                             :key="types"
                             :class="types.type.name"
-                            class="inline-flex items-center px-2.5 py-0.5 rounded-md text-md mr-2 text-gray-100 font-bold capitalize tracking-wider"
+                            class="inline-flex items-center px-2.5 py-0.5 rounded-md text-md mr-2 text-gray-100 font-bold capitalize tracking-wider mt-1"
                           >
                             {{ types.type.name }}
                           </span>
