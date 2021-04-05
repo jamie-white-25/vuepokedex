@@ -26,4 +26,7 @@ export default {
 * {
   outline: none !important;
 }
+.router-link-exact-active {
+  border-bottom: 2px solid white;
+}
 </style>

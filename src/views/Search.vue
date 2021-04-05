@@ -53,7 +53,13 @@
       </div>
     </section>
 
-    <section class="mt-16 max-w-lg mx-auto" v-if="pokemon">
+    <section class="mt-6 md:mt-16 max-w-lg mx-auto" v-if="error">
+      <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500 text-center">
+        No Pokemon found
+      </p>
+    </section>
+
+    <section class="mt-6 md:mt-16 max-w-lg mx-auto" v-if="pokemon">
       <section class="flex mb-8">
         <div
           class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"
@@ -324,7 +330,7 @@ export default {
     const pokemon = ref(null);
     const shinyToggle = ref(false);
     const paramsPokemon = ref(route.params.pokemon);
-    const { getPokemon } = setupPokemonApi();
+    const { error, getPokemon } = setupPokemonApi();
 
     onMounted(() => {
       searchPokemon(paramsPokemon);
@@ -335,6 +341,7 @@ export default {
         setTimeout(() => {
           searchPokemon(search);
           search.value = "";
+          error.value = false;
         }, 1000);
       }
     };
@@ -350,6 +357,7 @@ export default {
     });
 
     return {
+      error,
       search,
       pokemon,
       shinyToggle,

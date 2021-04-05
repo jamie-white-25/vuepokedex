@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
+import notFound from "@/components/notFound.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "search" */ "../views/Search.vue")
+  },
+  {
+    path: "/:catchAll(.*)",
+    name: 404,
+    component: notFound
   }
 ];
 

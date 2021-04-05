@@ -91,14 +91,14 @@
     <!-- Mobile menu, show/hide based on menu state. -->
     <div class="sm:hidden" :class="menu ? 'block' : 'hidden'" id="mobile-menu">
       <div class="pb-3 space-y-1">
-        <router-link
-          v-for="region in regions"
-          :key="region"
-          :to="{ name: 'Region', params: { name: region } }"
-          class="text-gray-100 items-center pt-3 text-md font-bold hover:text-gray-200 capitalize block mx-4"
-        >
-          {{ region }}
-        </router-link>
+        <div v-for="region in regions" :key="region" @click="closeMenu">
+          <router-link
+            :to="{ name: 'Region', params: { name: region } }"
+            class="text-gray-100 items-center pt-3 text-md font-bold hover:text-gray-200 capitalize block mx-4"
+          >
+            {{ region }}
+          </router-link>
+        </div>
       </div>
     </div>
   </nav>
@@ -127,7 +127,7 @@ export default {
     const closeMenu = () => {
       setTimeout(() => {
         menu.value = false;
-      }, 1000);
+      }, 200);
     };
 
     return {

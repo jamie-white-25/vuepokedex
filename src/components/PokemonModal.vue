@@ -56,6 +56,7 @@
             alt=""
           />
           <img
+            v-if="pokemon.sprites.back_default"
             class="inline-block h-32 w-32"
             :src="
               shinyToggle
