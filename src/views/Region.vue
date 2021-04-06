@@ -26,7 +26,7 @@
       <div
         class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
       >
-        <div class="text-center">
+        <div class="text-center animate__animated animate__slideInRight">
           <p
             class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight lg:text-6xl"
           >
@@ -51,6 +51,7 @@
           </div>
         </div>
       </div>
+
       <PokemonList :list="filterPokemon" />
 
       <Modal :isOpen="isModalOpen" @close="closeModal">

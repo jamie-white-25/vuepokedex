@@ -1,11 +1,10 @@
 <template>
   <transition
-    enter-from-class="opacity-0"
-    enter-to-class="opacity-100"
-    enter-active-class="ease-out duration-200"
-    leave-from-class="opacity-100"
-    leave-to-class="opacity-0"
-    leave-active-class="ease-in duration-200"
+    name="custom-classes-transition"
+    enter-active-class="animate__animated animate__slideInUp"
+    leave-active-class="animate__animated animate__slideDownOut"
+    appear
+    mode="out-in"
   >
     <div
       v-if="!pokemon"

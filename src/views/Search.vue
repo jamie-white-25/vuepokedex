@@ -2,7 +2,7 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <section class="bg-white">
       <div
-        class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8"
+        class="max-w-7xl mx-auto pt-16 px-4 sm:pt-52 sm:pb-0 sm:px-6 lg:px-8 animate__animated animate__slideInRight"
       >
         <div class="text-center">
           <p
@@ -53,13 +53,19 @@
       </div>
     </section>
 
-    <section class="mt-6 md:mt-16 max-w-lg mx-auto" v-if="error">
+    <section
+      class="mt-6 md:mt-16 max-w-lg mx-auto animate__animated animate__slideInUp"
+      v-if="error"
+    >
       <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500 text-center">
         No Pokemon found
       </p>
     </section>
 
-    <section class="mt-6 md:mt-16 max-w-lg mx-auto" v-if="pokemon">
+    <section
+      class="mt-6 md:mt-16 max-w-lg mx-auto animate__animated animate__slideInUp"
+      v-if="pokemon"
+    >
       <section class="flex mb-8">
         <div
           class="border bg-gray-200 p-5 w-full flex justify-around rounded-lg"

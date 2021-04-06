@@ -1,12 +1,11 @@
 <template>
   <teleport to="#modals">
     <transition
-      enter-from-class="opacity-0"
-      enter-to-class="opacity-100"
-      enter-active-class="ease-out duration-300"
-      leave-from-class="opacity-100"
-      leave-to-class="opacity-0"
-      leave-active-class="ease-in duration-200"
+      name="custom-classes-transition"
+      enter-active-class="animate__animated animate__fadeIn"
+      leave-active-class="animate__animated animate__fadeOut"
+      appear
+      mode="out-in"
     >
       <div class="fixed z-10 inset-0 overflow-y-auto" v-if="toggle">
         <div
