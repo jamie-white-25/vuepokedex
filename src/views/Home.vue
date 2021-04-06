@@ -7,9 +7,8 @@
         <div
           class="mx-auto max-w-md px-4 sm:max-w-2xl sm:px-6 sm:text-center lg:px-0 lg:text-left lg:flex lg:items-center"
         >
-          <div class="lg:py-24">
-            <a
-              href="#"
+          <div class="lg:py-24 animate__animated animate__fadeInLeft">
+            <div
               class="items-center text-gray-600 bg-gray-100 rounded-full p-1 pr-2 sm:text-base lg:text-sm xl:text-base hover:text-red-700 hidden sm:inline-flex"
             >
               <span
@@ -33,7 +32,7 @@
                   clip-rule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </div>
             <h1
               class="mt-4 text-4xl tracking-tight font-extrabold text-white sm:mt-5 sm:text-6xl lg:mt-6 xl:text-6xl"
             >
@@ -91,7 +90,7 @@
             <!-- Illustration taken from Lucid Illustrations: https://lucid.pixsellz.io/ -->
 
             <img
-              class="lg:inset-y-0 lg:left-0 w-auto h-44 md:h-48 lg:h-96 self-center hidden lg:flex"
+              class="lg:inset-y-0 lg:left-0 w-auto h-44 md:h-48 lg:h-96 self-center hidden lg:flex animate__animated animate__bounceInDown"
               :src="pokemonImg"
               alt="pokemon image"
             />
