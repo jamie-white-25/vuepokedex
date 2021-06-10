@@ -1,26 +1,24 @@
-
 export const PokedexModule = {
     namespaced: true,
     state: {
         pokedex: [],
-        region: null,
+        region: null
     },
-    getters: {
-    },
+    getters: {},
     mutations: {
         SET_POKEDEX(state, region) {
-            state.pokedex = region
+            state.pokedex = region;
         },
         SET_REGION(state, region) {
-            state.region = region
-        },
+            state.region = region;
+        }
     },
     actions: {
         setPokedex({ commit }, region) {
-            commit('SET_POKEDEX', region);
+            commit("SET_POKEDEX", region);
         },
         setRegion({ commit }, region) {
-            commit('SET_REGION', region);
+            commit("SET_REGION", region);
         }
     }
-}// this is overkill and not needed...... yet? 
+}; // this is overkill and not needed...... yet?
